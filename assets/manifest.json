@@ -1,0 +1,21 @@
+{
+  "name": "Kartik Padmanabhan Portfolio",
+  "short_name": "KP Portfolio",
+  "description": "Data Science undergraduate specializing in explainable ML and churn analytics",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#080b12",
+  "theme_color": "#080b12",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
