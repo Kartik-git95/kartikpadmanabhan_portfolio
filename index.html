@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="phosphor">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kartik Padmanabhan — KARTIK OS | Data Science Portfolio</title>
+  <meta name="description" content="KARTIK OS — the portfolio of Kartik Padmanabhan, data analyst. Boot the machine, open the windows, type commands in the terminal. Python, SQL, SHAP, zero black boxes." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='8'%20fill='%23051409'/%3E%3Ctext%20x='10'%20y='44'%20font-family='monospace'%20font-size='30'%20font-weight='bold'%20fill='%233dff7c'%3E%26gt;_%3C/text%3E%3C/svg%3E" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("os-theme");
+        if (t) document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="booting">
+
+  <!-- Falling-data background -->
+  <canvas id="matrix" aria-hidden="true"></canvas>
+
+  <!-- ===== DESKTOP ===== -->
+  <div class="desktop" id="desktop">
+
+    <!-- Desktop icons (one click opens) -->
+    <div class="desktop-icons" id="desktopIcons">
+      <button class="dicon" data-app="terminal" aria-label="Open terminal">
+        <svg class="dicon-img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="7 9 11 13 7 17"/><line x1="13" y1="17" x2="17" y2="17"/></svg>
+        <span class="dicon-label">terminal</span>
+      </button>
+      <button class="dicon" data-app="about" aria-label="Open about window">
+        <svg class="dicon-img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>
+        <span class="dicon-label">about.txt</span>
+      </button>
+      <button class="dicon" data-app="skills" aria-label="Open skills task manager">
+        <svg class="dicon-img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <span class="dicon-label">skills.exe</span>
+      </button>
+      <button class="dicon" data-app="projects" aria-label="Open projects folder">
+        <svg class="dicon-img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        <span class="dicon-label">projects/</span>
+      </button>
+      <button class="dicon" data-app="education" aria-label="Open education log">
+        <svg class="dicon-img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        <span class="dicon-label">education.log</span>
+      </button>
+      <button class="dicon" data-app="contact" aria-label="Open contact window">
+        <svg class="dicon-img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <span class="dicon-label">contact.cfg</span>
+      </button>
+      <button class="dicon" data-link="https://kartik-git95.github.io/kartikpadmanabhan_portfolio/assets/kartikpadmanabhan_Resume.pdf" aria-label="Open resume PDF">
+        <svg class="dicon-img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span class="dicon-label">resume.pdf</span>
+      </button>
+      <button class="dicon" data-app="bin" aria-label="Open recycle bin">
+        <svg class="dicon-img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        <span class="dicon-label">recycle bin</span>
+      </button>
+    </div>
+
+    <span class="os-watermark" aria-hidden="true">KARTIK OS<br /><b>v8.05</b></span>
+    <span class="os-hint mono" aria-hidden="true">one click opens · right-click desktop · try <b>help</b> in the terminal</span>
+  </div>
+
+  <!-- ===== WINDOWS ===== -->
+
+  <!-- Terminal -->
+  <section class="window hidden" id="win-terminal" data-app="terminal" aria-label="Terminal window">
+    <header class="titlebar" data-titlebar>
+      <span class="title"><svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 9 11 13 7 17"/><line x1="13" y1="17" x2="17" y2="17"/></svg> kartik@os: ~</header>
+      <div class="tb-controls">
+        <button class="tb-btn" data-action="minimize" aria-label="Minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5"/></svg></button>
+        <button class="tb-btn" data-action="maximize" aria-label="Maximize"><svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7"/></svg></button>
+        <button class="tb-btn tb-close" data-action="close" aria-label="Close"><svg viewBox="0 0 10 10"><line x1="1" y1="1" x2="9" y2="9"/><line x1="9" y1="1" x2="1" y2="9"/></svg></button>
+      </div>
+    </header>
+    <div class="win-body win-term">
+      <div class="term-out" id="termOut" aria-live="polite"></div>
+      <div class="term-input-line">
+        <span class="term-prompt mono">kartik@os:~$</span>
+        <input id="termInput" class="mono" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal command input" />
+        <span class="term-caret" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="window hidden" id="win-about" data-app="about" aria-label="About window">
+    <header class="titlebar" data-titlebar>
+      <span class="title"><svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg> system.properties — about</header>
+      <div class="tb-controls">
+        <button class="tb-btn" data-action="minimize" aria-label="Minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5"/></svg></button>
+        <button class="tb-btn" data-action="maximize" aria-label="Maximize"><svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7"/></svg></button>
+        <button class="tb-btn tb-close" data-action="close" aria-label="Close"><svg viewBox="0 0 10 10"><line x1="1" y1="1" x2="9" y2="9"/><line x1="9" y1="1" x2="1" y2="9"/></svg></button>
+      </div>
+    </header>
+    <div class="win-body">
+      <h2 class="win-heading">SYSTEM PROPERTIES</h2>
+
+      <div class="sysprops">
+        <div class="prop"><span class="prop-k mono">USER</span><span class="prop-v">Kartik Padmanabhan</span></div>
+        <div class="prop"><span class="prop-k mono">ROLE</span><span class="prop-v">Data Analyst — open to roles</span></div>
+        <div class="prop"><span class="prop-k mono">OS</span><span class="prop-v">KARTIK OS v8.05 (CGPA Edition)</span></div>
+        <div class="prop"><span class="prop-k mono">HOST</span><span class="prop-v">Kothamangalam, Kerala, IN</span></div>
+        <div class="prop"><span class="prop-k mono">KERNEL</span><span class="prop-v">B.Tech CSE (Data Science), MA College — since 2023</span></div>
+        <div class="prop"><span class="prop-k mono">SHELL</span><span class="prop-v">Python · SQL · a healthy suspicion of black boxes</span></div>
+        <div class="prop"><span class="prop-k mono">MEMORY</span><span class="prop-v">8.05 / 10 CGPA</span></div>
+        <div class="prop"><span class="prop-k mono">LANGUAGES</span><span class="prop-v">English · Malayalam · Hindi · Tamil</span></div>
+      </div>
+
+      <p class="win-text">
+        I turn messy, imbalanced datasets into models people actually trust — then explain
+        why the model said what it said. My recent work spans two ends of the same problem:
+        predicting telecom churn with per-prediction SHAP explainability, and routing live
+        camera feeds to the right CV model based on crowd density. Never ship a number
+        without a reason attached.
+      </p>
+
+      <h3 class="win-sub mono">// credentials installed</h3>
+      <div class="chips">
+        <span class="chip mono">.hack() 2025 — top 12 / 60</span>
+        <span class="chip mono">Tata GenAI Analytics — Forage, Jan 2026</span>
+        <span class="chip mono">Deloitte Data Analytics — Forage, Mar 2026</span>
+      </div>
+
+      <h3 class="win-sub mono">// currently compiling</h3>
+      <div class="chips">
+        <span class="chip chip-dim mono">real-time CV pipelines</span>
+        <span class="chip chip-dim mono">dashboarding at scale</span>
+        <span class="chip chip-dim mono">advanced MLOps</span>
+      </div>
+
+      <div class="win-actions">
+        <a class="os-btn" href="mailto:kartikp9595@gmail.com">email me</a>
+        <a class="os-btn" href="https://github.com/Kartik-git95" target="_blank" rel="noopener">github</a>
+        <a class="os-btn" href="https://linkedin.com/in/kartik-padmanabhan" target="_blank" rel="noopener">linkedin</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills (Task Manager) -->
+  <section class="window hidden" id="win-skills" data-app="skills" aria-label="Skills task manager window">
+    <header class="titlebar" data-titlebar>
+      <span class="title"><svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg> task manager — skills</header>
+      <div class="tb-controls">
+        <button class="tb-btn" data-action="minimize" aria-label="Minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5"/></svg></button>
+        <button class="tb-btn" data-action="maximize" aria-label="Maximize"><svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7"/></svg></button>
+        <button class="tb-btn tb-close" data-action="close" aria-label="Close"><svg viewBox="0 0 10 10"><line x1="1" y1="1" x2="9" y2="9"/><line x1="9" y1="1" x2="1" y2="9"/></svg></button>
+      </div>
+    </header>
+    <div class="win-body">
+      <h2 class="win-heading">PROCESSES: <span id="skillCount">0</span> · CPU: EXPLAINABILITY ENABLED</h2>
+      <p class="win-text dim">the toolkit behind the numbers — try ending a task, I dare you.</p>
+
+      <div class="taskman">
+        <div class="taskman-row taskman-head-row mono">
+          <span>PROCESS</span><span>TYPE</span><span class="ta-cpu">PROFICIENCY</span><span></span>
+        </div>
+        <!-- ===== EDIT: your skills — data-cpu = proficiency 0-100 ===== -->
+        <div class="taskman-row" data-cpu="92">
+          <span class="tm-name">python.exe</span><span class="tm-type mono">language</span>
+          <span class="tm-cpu"><span class="tm-bar"><i></i></span><b class="mono">92%</b></span>
+          <button class="tm-end mono">end task</button>
+        </div>
+        <div class="taskman-row" data-cpu="88">
+          <span class="tm-name">sql.query</span><span class="tm-type mono">language</span>
+          <span class="tm-cpu"><span class="tm-bar"><i></i></span><b class="mono">88%</b></span>
+          <button class="tm-end mono">end task</button>
+        </div>
+        <div class="taskman-row" data-cpu="90">
+          <span class="tm-name">pandas.core</span><span class="tm-type mono">library</span>
+          <span class="tm-cpu"><span class="tm-bar"><i></i></span><b class="mono">90%</b></span>
+          <button class="tm-end mono">end task</button>
+        </div>
+        <div class="taskman-row" data-cpu="86">
+          <span class="tm-name">numpy.array</span><span class="tm-type mono">library</span>
+          <span class="tm-cpu"><span class="tm-bar"><i></i></span><b class="mono">86%</b></span>
+          <button class="tm-end mono">end task</button>
+        </div>
+        <div class="taskman-row" data-cpu="84">
+          <span class="tm-name">sklearn.model</span><span class="tm-type mono">library</span>
+          <span class="tm-cpu"><span class="tm-bar"><i></i></span><b class="mono">84%</b></span>
+          <button class="tm-end mono">end task</button>
+        </div>
+        <div class="taskman-row" data-cpu="80">
+          <span class="tm-name">xgboost.train</span><span class="tm-type mono">library</span>
+          <span class="tm-cpu"><span class="tm-bar"><i></i></span><b class="mono">80%</b></span>
+          <button class="tm-end mono">end task</button>
+        </div>
+        <div class="taskman-row" data-cpu="78">
+          <span class="tm-name">shap.explain</span><span class="tm-type mono">library</span>
+          <span class="tm-cpu"><span class="tm-bar"><i></i></span><b class="mono">78%</b></span>
+          <button class="tm-end mono">end task</button>
+        </div>
+        <div class="taskman-row" data-cpu="82">
+          <span class="tm-name">matplotlib.plot</span><span class="tm-type mono">library</span>
+          <span class="tm-cpu"><span class="tm-bar"><i></i></span><b class="mono">82%</b></span>
+          <button class="tm-end mono">end task</button>
+        </div>
+        <div class="taskman-row" data-cpu="85">
+          <span class="tm-name">dataviz.render</span><span class="tm-type mono">skill</span>
+          <span class="tm-cpu"><span class="tm-bar"><i></i></span><b class="mono">85%</b></span>
+          <button class="tm-end mono">end task</button>
+        </div>
+        <div class="taskman-row" data-cpu="85">
+          <span class="tm-name">excel.sheet</span><span class="tm-type mono">tool</span>
+          <span class="tm-cpu"><span class="tm-bar"><i></i></span><b class="mono">85%</b></span>
+          <button class="tm-end mono">end task</button>
+        </div>
+        <div class="taskman-row" data-cpu="74">
+          <span class="tm-name">powerbi.dax</span><span class="tm-type mono">tool</span>
+          <span class="tm-cpu"><span class="tm-bar"><i></i></span><b class="mono">74%</b></span>
+          <button class="tm-end mono">end task</button>
+        </div>
+        <div class="taskman-row" data-cpu="78">
+          <span class="tm-name">mysql.serve</span><span class="tm-type mono">tool</span>
+          <span class="tm-cpu"><span class="tm-bar"><i></i></span><b class="mono">78%</b></span>
+          <button class="tm-end mono">end task</button>
+        </div>
+        <div class="taskman-row" data-cpu="70">
+          <span class="tm-name">flask.route</span><span class="tm-type mono">tool</span>
+          <span class="tm-cpu"><span class="tm-bar"><i></i></span><b class="mono">70%</b></span>
+          <button class="tm-end mono">end task</button>
+        </div>
+        <div class="taskman-row" data-cpu="80">
+          <span class="tm-name">git.commit</span><span class="tm-type mono">tool</span>
+          <span class="tm-cpu"><span class="tm-bar"><i></i></span><b class="mono">80%</b></span>
+          <button class="tm-end mono">end task</button>
+        </div>
+        <div class="taskman-row" data-cpu="90">
+          <span class="tm-name">jupyter.notebook</span><span class="tm-type mono">tool</span>
+          <span class="tm-cpu"><span class="tm-bar"><i></i></span><b class="mono">90%</b></span>
+          <button class="tm-end mono">end task</button>
+        </div>
+        <div class="taskman-row" data-cpu="70">
+          <span class="tm-name">html_css.layout</span><span class="tm-type mono">language</span>
+          <span class="tm-cpu"><span class="tm-bar"><i></i></span><b class="mono">70%</b></span>
+          <button class="tm-end mono">end task</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="window hidden" id="win-projects" data-app="projects" aria-label="Projects window">
+    <header class="titlebar" data-titlebar>
+      <span class="title"><svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> /projects — 2 items</header>
+      <div class="tb-controls">
+        <button class="tb-btn" data-action="minimize" aria-label="Minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5"/></svg></button>
+        <button class="tb-btn" data-action="maximize" aria-label="Maximize"><svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7"/></svg></button>
+        <button class="tb-btn tb-close" data-action="close" aria-label="Close"><svg viewBox="0 0 10 10"><line x1="1" y1="1" x2="9" y2="9"/><line x1="9" y1="1" x2="1" y2="9"/></svg></button>
+      </div>
+    </header>
+    <div class="win-body">
+      <h2 class="win-heading">MOUNTED PROJECTS</h2>
+      <p class="win-text dim">two builds on either side of the same problem: making a model's output something a stakeholder can act on.</p>
+
+      <!-- ===== EDIT: your projects ===== -->
+      <article class="proj-file">
+        <div class="proj-head">
+          <h3>churn_prediction_xai.app</h3>
+          <span class="badge mono">FLAGSHIP · EXPLAINABLE AI</span>
+        </div>
+        <p class="win-text">
+          A Streamlit app predicting telecom customer churn across ~7,000 records with a 26%
+          class imbalance — tuned to be accurate, then opened up with SHAP so the "why"
+          travels with every prediction.
+        </p>
+        <div class="proj-stats">
+          <span class="pstat mono"><b>~7,000</b>records</span>
+          <span class="pstat mono"><b>26%</b>imbalance handled</span>
+          <span class="pstat mono"><b>5-fold</b>CV</span>
+          <span class="pstat mono"><b>SHAP</b>per-prediction</span>
+        </div>
+        <div class="chips">
+          <span class="chip mono">python</span><span class="chip mono">pandas</span><span class="chip mono">scikit-learn</span><span class="chip mono">xgboost</span><span class="chip mono">shap</span><span class="chip mono">streamlit</span>
+        </div>
+        <div class="win-actions">
+          <!-- EDIT: replace # with your live demo link -->
+          <a class="os-btn" href="#" target="_blank" rel="noopener">live demo</a>
+          <a class="os-btn" href="https://github.com/Kartik-git95" target="_blank" rel="noopener">source code</a>
+        </div>
+      </article>
+
+      <article class="proj-file">
+        <div class="proj-head">
+          <h3>crowd_detection_framework.sys</h3>
+          <span class="badge badge-dim mono">COMPUTER VISION · SYSTEMS</span>
+        </div>
+        <p class="win-text">
+          A hybrid crowd-analysis pipeline that does not force one model on every scene —
+          sparse footage routes to YOLOv8 object detection, dense crowds route to CSRNet
+          density estimation. A live Flask dashboard fires threshold alerts for monitoring staff.
+        </p>
+        <div class="proj-stats">
+          <span class="pstat mono"><b>2</b>models routed</span>
+          <span class="pstat mono"><b>YOLOv8</b>sparse scenes</span>
+          <span class="pstat mono"><b>CSRNet</b>dense scenes</span>
+          <span class="pstat mono"><b>live</b>alerts</span>
+        </div>
+        <div class="chips">
+          <span class="chip mono">python</span><span class="chip mono">yolov8</span><span class="chip mono">csrnet</span><span class="chip mono">flask</span><span class="chip mono">opencv</span>
+        </div>
+        <div class="win-actions">
+          <!-- EDIT: replace # with your live demo link -->
+          <a class="os-btn" href="#" target="_blank" rel="noopener">live demo</a>
+          <a class="os-btn" href="https://github.com/Kartik-git95" target="_blank" rel="noopener">source code</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="window hidden" id="win-education" data-app="education" aria-label="Education window">
+    <header class="titlebar" data-titlebar>
+      <span class="title"><svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> /var/log/education.log</header>
+      <div class="tb-controls">
+        <button class="tb-btn" data-action="minimize" aria-label="Minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5"/></svg></button>
+        <button class="tb-btn" data-action="maximize" aria-label="Maximize"><svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7"/></svg></button>
+        <button class="tb-btn tb-close" data-action="close" aria-label="Close"><svg viewBox="0 0 10 10"><line x1="1" y1="1" x2="9" y2="9"/><line x1="9" y1="1" x2="1" y2="9"/></svg></button>
+      </div>
+    </header>
+    <div class="win-body">
+      <h2 class="win-heading">ACADEMIC LOG</h2>
+      <pre class="os-log mono">kartik@os:~$ cat /var/log/education.log
+
+[2023 — PRESENT]
+  B.TECH · COMPUTER SCIENCE (DATA SCIENCE)
+  MAR ATHANASIUS COLLEGE OF ENGINEERING
+  KOTHAMANGALAM, KERALA
+  STATUS: CGPA 8.05
+
+[2021 — 2023]
+  BIOLOGY SCIENCE
+  GOVT HIGHER SECONDARY SCHOOL, VAYAKKARA
+  STATUS: 99.25%</pre>
+
+      <h3 class="win-sub mono">// certificates installed</h3>
+      <pre class="os-log mono os-log-dim">kartik@os:~$ ls /opt/certificates
+
+.hack()2025_hackathon.cert     top 12 of 60 teams
+tata_genai_analytics.cert      forage · jan 2026
+deloitte_data_analytics.cert   forage · mar 2026</pre>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="window hidden" id="win-contact" data-app="contact" aria-label="Contact window">
+    <header class="titlebar" data-titlebar>
+      <span class="title"><svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> compose mail — contact</header>
+      <div class="tb-controls">
+        <button class="tb-btn" data-action="minimize" aria-label="Minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5"/></svg></button>
+        <button class="tb-btn" data-action="maximize" aria-label="Maximize"><svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7"/></svg></button>
+        <button class="tb-btn tb-close" data-action="close" aria-label="Close"><svg viewBox="0 0 10 10"><line x1="1" y1="1" x2="9" y2="9"/><line x1="9" y1="1" x2="1" y2="9"/></svg></button>
+      </div>
+    </header>
+    <div class="win-body">
+      <h2 class="win-heading">LET'S TALK DATA</h2>
+      <p class="win-text dim">open to data analyst roles, internships, and anything that starts with a messy CSV and ends with a clear decision.</p>
+
+      <form class="os-form" id="mailForm" novalidate>
+        <div class="form-row">
+          <label class="mono" for="cfName">FROM:</label>
+          <input id="cfName" name="name" type="text" placeholder="your name" required />
+        </div>
+        <div class="form-row">
+          <label class="mono" for="cfEmail">REPLY-TO:</label>
+          <input id="cfEmail" name="email" type="email" placeholder="you@company.com" required />
+        </div>
+        <div class="form-row">
+          <label class="mono" for="cfMsg">BODY:</label>
+          <textarea id="cfMsg" name="message" rows="5" placeholder="tell me about the problem you want solved..." required></textarea>
+        </div>
+        <button type="submit" class="os-btn os-btn-block mono">TRANSMIT ▸</button>
+        <p class="form-hint mono">* opens your email app — see README to enable direct sending</p>
+      </form>
+
+      <h3 class="win-sub mono">// direct channels</h3>
+      <div class="win-actions">
+        <a class="os-btn" href="mailto:kartikp9595@gmail.com">email</a>
+        <a class="os-btn" href="https://github.com/Kartik-git95" target="_blank" rel="noopener">github</a>
+        <a class="os-btn" href="https://linkedin.com/in/kartik-padmanabhan" target="_blank" rel="noopener">linkedin</a>
+        <a class="os-btn" href="https://kartik-git95.github.io/kartikpadmanabhan_portfolio/assets/kartikpadmanabhan_Resume.pdf" target="_blank" rel="noopener">resume.pdf</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recycle Bin -->
+  <section class="window hidden" id="win-bin" data-app="bin" aria-label="Recycle bin window">
+    <header class="titlebar" data-titlebar>
+      <span class="title"><svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> recycle bin — quarantined</header>
+      <div class="tb-controls">
+        <button class="tb-btn" data-action="minimize" aria-label="Minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5"/></svg></button>
+        <button class="tb-btn" data-action="maximize" aria-label="Maximize"><svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7"/></svg></button>
+        <button class="tb-btn tb-close" data-action="close" aria-label="Close"><svg viewBox="0 0 10 10"><line x1="1" y1="1" x2="9" y2="9"/><line x1="9" y1="1" x2="1" y2="9"/></svg></button>
+      </div>
+    </header>
+    <div class="win-body">
+      <h2 class="win-heading">QUARANTINE ZONE</h2>
+      <p class="win-text dim">files deleted from this system — and exactly why.</p>
+
+      <div class="bin-list">
+        <div class="bin-item">
+          <span class="bin-name mono">black_box_model.pkl</span>
+          <span class="bin-why">deleted — if I can't explain it, I don't ship it.</span>
+        </div>
+        <div class="bin-item">
+          <span class="bin-name mono">test_set_leakage.zip</span>
+          <span class="bin-why">deleted — leaking test data is a felony in this OS.</span>
+        </div>
+        <div class="bin-item">
+          <span class="bin-name mono">unlabeled_data.csv</span>
+          <span class="bin-why">deleted — no ground truth, no glory.</span>
+        </div>
+        <div class="bin-item">
+          <span class="bin-name mono">gut_feeling_dashboard.pbix</span>
+          <span class="bin-why">deleted — every number needs a reason attached.</span>
+        </div>
+      </div>
+
+      <button class="os-btn os-btn-danger mono" id="emptyBin">EMPTY RECYCLE BIN</button>
+    </div>
+  </section>
+
+  <!-- ===== TASKBAR ===== -->
+  <footer class="taskbar" id="taskbar">
+    <button class="start-btn" id="startBtn" aria-label="Open start menu" aria-expanded="false">
+      <svg class="start-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>
+      <span class="mono">KARTIK_</span>
+    </button>
+    <div class="taskbar-apps" id="taskbarApps"></div>
+    <div class="taskbar-tray">
+      <button class="tray-btn" id="themeToggle" aria-label="Switch phosphor/amber theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
+      </button>
+      <span class="clock mono" id="clock" aria-label="current time">--:--:--</span>
+    </div>
+  </footer>
+
+  <!-- ===== START MENU ===== -->
+  <nav class="start-menu" id="startMenu" aria-label="Start menu">
+    <div class="sm-head">
+      <span class="sm-logo">KARTIK OS</span>
+      <span class="sm-ver mono">v8.05 · CGPA edition</span>
+    </div>
+    <div class="sm-apps">
+      <button class="sm-item" data-app="terminal"><svg class="sm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="7 9 11 13 7 17"/><line x1="13" y1="17" x2="17" y2="17"/></svg>terminal</button>
+      <button class="sm-item" data-app="about"><svg class="sm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>about</button>
+      <button class="sm-item" data-app="skills"><svg class="sm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>skills</button>
+      <button class="sm-item" data-app="projects"><svg class="sm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>projects</button>
+      <button class="sm-item" data-app="education"><svg class="sm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>education</button>
+      <button class="sm-item" data-app="contact"><svg class="sm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>contact</button>
+      <button class="sm-item" data-app="bin"><svg class="sm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>recycle bin</button>
+    </div>
+    <div class="sm-sep"></div>
+    <div class="sm-links">
+      <a class="sm-item" href="https://github.com/Kartik-git95" target="_blank" rel="noopener"><svg class="sm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77 5.44 5.44 0 0 0 3.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>github</a>
+      <a class="sm-item" href="https://linkedin.com/in/kartik-padmanabhan" target="_blank" rel="noopener"><svg class="sm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>linkedin</a>
+      <a class="sm-item" href="https://kartik-git95.github.io/kartikpadmanabhan_portfolio/assets/kartikpadmanabhan_Resume.pdf" target="_blank" rel="noopener"><svg class="sm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>resume.pdf</a>
+      <a class="sm-item" href="mailto:kartikp9595@gmail.com"><svg class="sm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>email</a>
+    </div>
+    <div class="sm-sep"></div>
+    <button class="sm-item sm-shutdown" id="shutdownBtn"><svg class="sm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>shut down</button>
+  </nav>
+
+  <!-- ===== CONTEXT MENU ===== -->
+  <div class="ctx-menu" id="ctxMenu" role="menu">
+    <button class="ctx-item" data-ctx="terminal">open terminal</button>
+    <button class="ctx-item" data-ctx="theme">next theme</button>
+    <button class="ctx-item" data-ctx="about">about KARTIK OS</button>
+    <button class="ctx-item" data-ctx="refresh">refresh</button>
+  </div>
+
+  <!-- ===== BOOT OVERLAY ===== -->
+  <div class="boot" id="boot" aria-live="polite">
+    <div class="boot-inner">
+      <pre class="boot-log mono" id="bootLog"></pre>
+      <p class="boot-skip mono">press any key to skip</p>
+    </div>
+  </div>
+
+  <!-- ===== SHUTDOWN OVERLAY ===== -->
+  <div class="shutdown" id="shutdownOverlay" hidden>
+    <div class="shutdown-inner">
+      <p class="shutdown-big">IT'S NOW SAFE TO TURN OFF<br />YOUR COMPUTER.</p>
+      <p class="shutdown-sub mono">click anywhere to reboot — kartikp9595@gmail.com</p>
+    </div>
+  </div>
+
+  <!-- Toasts -->
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
