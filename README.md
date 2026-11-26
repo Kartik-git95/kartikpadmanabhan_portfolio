@@ -1,67 +1,66 @@
-# KARTIK OS — a portfolio that boots like a computer
+The Data Journal — Kartik Padmanabhan
+A portfolio typeset like a broadsheet newspaper. Cream paper, ink, one vermillion
+accent, a ticker tape, feature articles, and a Wire section that is live from
+GitHub — your repos, languages and pushes are fetched on every visit, straight
+from the public GitHub API. No token, no login, no build step.
 
-Kartik Padmanabhan's portfolio reimagined as a retro CRT operating system.
-Visitors watch a BIOS boot sequence, then explore the desktop: draggable
-windows, a taskbar, a start menu, and a real terminal they can type commands
-into. Pure HTML/CSS/JS — no frameworks, no build step, perfect for GitHub
-Pages.
+Concept: editorial print. It shares nothing with a typical dark/gradient/particles
+portfolio — no dark background, no glassmorphism, no particles, no gradients
+(the only gradient in the CSS is the skeleton-loader shimmer), no cursor gimmicks.
 
-## Files
+Files
+File
+What it is
+index.html	The page — every editable spot has an EDIT comment
+style.css	The design system (palette in :root, night edition in html[data-edition="night"])
+script.js	Ticker, reveals, night edition, the live GitHub Wire, letters
+README.md	This file
 
-| File       | Purpose                                        |
-|------------|------------------------------------------------|
-| index.html | All window content (about, projects, skills…) |
-| style.css  | CRT themes (phosphor green / amber), layouts   |
-| script.js  | Window manager, terminal, boot, easter eggs    |
-| README.md  | This guide                                     |
+Deploy on GitHub Pages
+Create a new repository (or reuse the old one after deleting its files), e.g. journal.
+Put these 4 files in the repo root (script.js and style.css next to index.html).
+Repo → Settings → Pages → Source: main branch, / (root) → Save.
+Your site goes live at https://kartik-git95.github.io/journal/ in a minute or two.
+To replace your current site, you can also just delete the contents of
+kartikpadmanabhan_portfolio and drop these files in — the URL stays the same.
 
-## Deploy to GitHub Pages
+The GitHub "plug-in" (the Wire section)
+Open script.js. At the very top:
 
-1. Commit these files to your repo (root of `main`).
-2. Repo → Settings → Pages → Source: **Deploy from a branch** → `main` / `(root)` → Save.
-3. Live at `https://<username>.github.io/<repo>/` in about a minute.
+js
+githubUser: 'Kartik-git95',   // ← your username
+That is the whole integration. On every visit the page calls:
 
-You can also just open `index.html` locally in any browser.
+https://api.github.com/users/Kartik-git95 — repo count, member since
+https://api.github.com/users/Kartik-git95/repos?per_page=100&sort=pushed — repos, languages, stars, last push
+and typesets the results as "wire briefs" plus a language distribution chart.
+Public data only, so no token is needed or should ever be added. Unauthenticated
+GitHub API allows 60 requests per visitor IP per hour — far beyond what a portfolio
+needs. If the API is unreachable (offline preview, rate limit), the page prints the
+fallbackRepos archive instead, so the section is never empty.
 
-## How visitors use it
+Customization cheat sheet
+What
+Where
+Email	script.js → CONFIG.email and the #copyEmail button text in index.html
+GitHub username	script.js → CONFIG.githubUser
+Ticker items	script.js → CONFIG.ticker
+Volume / issue no.	Masthead in index.html + CONFIG.volume
+Skills & levels	Section № 02 in index.html — add/remove <span class="sq on"> (max 5)
+Tool chips	№ 02 → .chips list
+Projects (articles)	Section № 03 — each <article> has kicker, title+link, deck, copy, tags
+LinkedIn / socials	№ 05 — an EDIT comment shows where to uncomment links
+Fallback repo data	script.js → CONFIG.fallbackRepos
+Colors	style.css → :root (day) and html[data-edition="night"] (night)
 
-- Boot sequence plays (any key skips it) → desktop appears with terminal open
-- One click on a desktop icon opens that app window
-- Windows can be **dragged** (title bar), minimized, maximized (or double-click
-  the title bar), and closed — they stack like a real OS
-- The **terminal** accepts commands: `help`, `about`, `skills`, `projects`,
-  `neofetch`, `socials`, `open projects`, `theme`, `clear`, `exit` …
-- Right-click the desktop for a context menu; the Start menu has social links
-- Taskbar clock is live; the theme button switches phosphor ↔ amber
-- Easter eggs: try `sudo hire kartik`, `hack`, or click "end task" in skills
-  or "EMPTY RECYCLE BIN" in the recycle bin
-
-## Customize — everything is marked with `EDIT` comments
-
-| What                | Where                                             |
-|---------------------|---------------------------------------------------|
-| Bio / about text    | index.html → `#win-about`                         |
-| Skills + levels     | index.html → `#win-skills` rows (`data-cpu` 0-100)|
-| Projects + links    | index.html → `#win-projects`                      |
-| Education / certs   | index.html → `#win-education`                     |
-| Social links        | index.html → search "github.com" etc.             |
-| Email (form target) | script.js → `CONFIG.email`                        |
-| Resume link         | script.js → `CONFIG.resume`                       |
-| Terminal responses  | script.js → `COMMANDS` object                    |
-| Boot messages       | script.js → `BOOT_LINES` array                   |
-| Colors              | style.css → `:root` / `[data-theme="amber"]`     |
-| Window sizes        | script.js → `APPS` object                        |
-
-## Contact form
-
-The form opens the visitor's email app (works with no backend). For direct
-messages on GitHub Pages, create a free form at https://formspree.io and in
-the submit handler in script.js replace the mailto block with a fetch POST
-to your Formspree endpoint.
-
-## Notes
-
-- Fully responsive: on phones, windows open full-screen and icons become an
-  app grid.
-- Respects `prefers-reduced-motion` (skips boot animation + matrix rain).
-- No emojis, no external images — icons are inline SVG, so nothing can break.
+Details worth knowing
+Night Edition — the masthead button inverts the whole paper to ink; the choice
+is remembered in localStorage (kp-journal-edition).
+Ticker — pure CSS animation, pauses on hover, items come from CONFIG.ticker.
+Letters to the editor — the contact form composes a mailto: and opens the
+visitor's mail app. Nothing is stored, nothing is sent to a server.
+Counters, reveals — IntersectionObserver; all motion respects
+prefers-reduced-motion.
+Print — the page keeps a print stylesheet; it is a newspaper, after all.
+Fonts load from Google Fonts (Fraunces + IBM Plex Mono). If you prefer
+self-hosting, download the woff2 files and change the <link> in index.html.
